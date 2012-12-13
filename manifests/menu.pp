@@ -1,23 +1,24 @@
 class pxe::menu { 
   include concat::setup
-  $menufile='/var/ftpd/pxelinux.cfg/default'
+  $tftp_root = $::pxe::tftp_root
+  $menufile="${tftp_root}/pxelinux.cfg/default'
  
-  file { '/var/ftpd':
+  file { $tftp_root:
     ensure   => directory,
     owner    => root,
     group    => admin,
     mode     => 775,
   }
 
-  file { '/var/ftpd/pxelinux.cfg':
+  file { "${tftp_root}/pxelinux.cfg":
     ensure   => directory,
     owner    => root,
     group    => admin,
     mode     => 775,
-    require  => File['/var/ftpd'],
+    require  => File[$tftp_root],
   }
   
-  file { '/var/ftpd/pxelinux.0':
+  file { "$tftp_root/pxelinux.0":
     ensure   => present,
     owner    => root,
     group    => admin,
@@ -26,13 +27,13 @@ class pxe::menu {
     require  => File['/var/ftpd'],
   }
 
-  file { '/var/ftpd/pxelinux.cfg/menu.c32':
+  file { "${tftp_root}/pxelinux.cfg/menu.c32":
     ensure   => present,
     owner    => root,
     group    => admin,
     mode     => 775,
     source   => '/usr/lib/syslinux/menu.c32',
-    require  => File['/var/ftpd/pxelinux.cfg'],
+    require  => File["${tftp_root}/pxelinux.cfg"],
   }
 
   concat { $menufile:
@@ -48,7 +49,7 @@ define pxe::menu::header (
   $order   = 01,
 ) { 
   concat::fragment { "menu_header":
-    target    => "/var/ftpd/pxelinux.cfg/default",
+    target    => "${::pxe::tftp_root}/pxelinux.cfg/default",
     order     => $order, 
     content   => template("pxe/pxe_menu_header.erb"),
   }
@@ -61,8 +62,8 @@ define pxe::menu::item (
   $order = 10,
 ) {
   concat::fragment { "menu_item_${label}":
-    target    => "/var/ftpd/pxelinux.cfg/default",
+    target    => "${::pxe::tftp_root}/pxelinux.cfg/default",
     order     => $order,
-    content   => template("pxe/pxe_menu_item.erb"),
+    content   => template("pxe/pxe_menu_host.erb"),
   }
 }
