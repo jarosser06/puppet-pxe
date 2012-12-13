@@ -1,0 +1,10 @@
+name    'jarosser06/puppet-pxe'
+version '0.0.1'
+source  'https://github.com/jarosser06/puppet-pxe'
+author  'jarosser06'
+license 'Apache License 2.0'
+summary 'Puppet PXE configuration module'
+description 'Puppet module to install and configure a PXE boot server for linux environment, specifically Ubuntu atm'
+project_page 'https://github.com/jarosser06/puppet-pxe'
+
+dependency 'ripienaar/concat', '>= 0.1.0'
