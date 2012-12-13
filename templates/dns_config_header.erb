@@ -1,0 +1,12 @@
+bogus-priv
+filterwin2k
+expand-hosts
+domain=<%=domain%>
+dhcp-range=<%=range%>
+dhcp-ignore=<%=ignore%>
+dhcp-boot=<%=dhcp_boot%>
+tftp-root=<%=tftp_root%>
+
+<% options.each do |option| -%>
+<%=option%>
+<% end -%>
