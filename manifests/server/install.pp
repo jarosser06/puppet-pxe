@@ -1,4 +1,4 @@
-class pxe::server::pxe {
+class pxe::server::install {
   package { 'syslinux':
     ensure   => present,
   }
