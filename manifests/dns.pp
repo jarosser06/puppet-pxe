@@ -7,16 +7,17 @@ class pxe::dns {
     mode      => 644,
     notify    => Service['dnsmasq'],
   }
+
 }
 
 define pxe::dns::header (
-  $domain,
-  $range,
-  $ignore = '',
+  $domain    = 'example.com',
+  $range     = '0.0.0.0',
+  $ignore    = '',
   $dhcp_boot = '',
   $tftp_root = '',
-  $options = '',
-  $order = 01,
+  $options   = '',
+  $order     = 01,
 ) {
   concat::fragment { "dnsmasq_header":
     target    => "/etc/dnsmasq.conf",
