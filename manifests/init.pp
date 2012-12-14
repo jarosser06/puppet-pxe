@@ -1,2 +1,2 @@
-class pxe ($tftp_root='/var/ftpd') {
+class pxe ($tftp_root='/srv/tftp') {
 }
