@@ -1,5 +1,5 @@
 define pxe::menu::host (
-  $label,
+  $label      =$title,
   $kernel,
   $append     ='',
   $order      =10,
