@@ -6,21 +6,25 @@ Lighttpd for serving up seed files.
 TODO: Make an easy way to install new netboot images.
 
 
-Usage:
-
+#Usage:
+'''
 include pxe
-
+'''
 or 
-
+'''
 include pxe { 'install_server':
   tftp_root     => '/srv/tftp',
 }
 
-# Default should work in most cases
+## Menu
+'''
+Default should work in most cases
+'''
 pxe::menu::header { 'menu': }
+'''
 
-# or you can change the menu title and timeout
-
+or you can change the menu title and timeout
+'''
 pxe::menu::header { 'menu':
   menu_title    => "Our PXE Boot Menu",
   menu_timeout  =>  500,
@@ -31,16 +35,18 @@ pxe::menu::host { 'webserver1':
   kernel        => 'ubuntu-installer-12.04/amd64/linux',
   append        => 'initrd=ubuntu-installer-12.04/amd64/initrd.gz'
 }
-
-# Without the label
+'''
+Without the label
+'''
 pxe::menu::host { 'webserver1':
   kernel        => 'ubuntu-installer-12.04/amd64/linux',
   append        => 'initrd=ubuntu-installer-12.04/amd64/initrd.gz'
 }
+'''
+## DNS 
 
-# DNS 
-
-# This will update your dnsmasq.conf
+This will update your dnsmasq.conf
+'''
 pxe::dns::header {
   domain       => 'mydomain.com',
   range        => '192.168.1.0,static',
@@ -53,3 +59,4 @@ pxe::dns::host {
   ip_address   => '192.168.1.4',
   lease_time   => 'infinite',
 }
+'''
