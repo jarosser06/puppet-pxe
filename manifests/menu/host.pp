@@ -22,9 +22,11 @@ define pxe::menu::host (
 
     case $os_info[0] {
       ubuntu: { 
-        $kernel="$::pxe::tftp_root/netboot/${kernel}/${os_info[2]}/linux"
+        $kernel_loc="$::pxe::tftp_root/netboot/${kernel}/${os_info[2]}/linux"
       }
     }
+  } else {
+    $kernel_loc = $kernel
   }
   
   concat::fragment { "menu_item_${label}":
