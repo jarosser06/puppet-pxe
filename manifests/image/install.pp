@@ -6,7 +6,7 @@ define pxe::image::install(
 ) {
 
   $tmp_dir = "/tmp/${os_name}_${os_version}_${os_arch}"
-  $final_dir = "$::pxe::tftp_root/${os_name}_${os_version}_${os_arch}"
+  $final_dir = "$::pxe::tftp_root/netboot/${os_name}_${os_version}_${os_arch}"
 
   case $os_name {
     ubuntu: {
