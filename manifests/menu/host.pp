@@ -18,8 +18,12 @@ define pxe::menu::host (
       }
     } 
 
+   
     $os_info = parse_host_kernel($kernel)
-    $kernel        = "$::pxe::tftp_root/netboot/$kernel/$os_info[2]/linux"
+    case $os_info[0] {
+      ubuntu: { 
+        $kernel="$::pxe::tftp_root/netboot/$kernel/$os_info[2]/linux"
+      }
   }
 
   
