@@ -3,8 +3,10 @@ Module to aid with installation and configuration of a Linux PXE Boot server.
 Uses dnsmasq for DHCP and PXE. 
 Lighttpd for serving up seed files.
 
-TODO: Make an easy way to install new netboot images.
+Latest Fixes:
 
+Added the ability to download images by specifying image as true in a menu host, 
+and setting the kernel to the proper naming convention ie: ubuntu_precise_amd64.
 
 Usage
 ---
@@ -31,6 +33,12 @@ include pxe
       label         => 'webserver1',
       kernel        => 'ubuntu-installer-12.04/amd64/linux',
       append        => 'initrd=ubuntu-installer-12.04/amd64/initrd.gz'
+    }
+
+    pxe::menu::host { 'testServer1':
+      label         => 'testServer1',
+      kernel        => 'ubuntu_precise_amd64',
+      image         => true,
     }
 
     pxe::menu::host { 'webserver2':
