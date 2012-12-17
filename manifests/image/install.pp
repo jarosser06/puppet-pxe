@@ -16,7 +16,7 @@ define pxe::image::install(
   }
 
   exec{ "wget $uri":
-    command => "/usr/bin/wget -q '$url' -P $tmp_dir ",
+    command => "/bin/wget -q '$url' -P $tmp_dir ",
     timeout => $timeout,
   }
 
