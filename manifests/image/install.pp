@@ -2,11 +2,12 @@ define pxe::image::install(
   $os_name,
   $os_version,
   $os_arch,
+  $final_dir = "$::pxe::tftp_root/netboot/${os_name}_${os_version}_${os_arch}"
+
 
 ) {
 
   $tmp_dir = "/tmp/${os_name}_${os_version}_${os_arch}"
-  $final_dir = "$::pxe::tftp_root/netboot/${os_name}_${os_version}_${os_arch}"
 
   case $os_name {
     ubuntu: {
