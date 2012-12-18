@@ -1,4 +1,4 @@
-define pxe::menu::host (
+define pxe::menu::entry (
   $label      = $title,
   $kernel     = '',
   $append     = '',
@@ -10,7 +10,7 @@ define pxe::menu::host (
   # TODO: Add support for append redirection as well
   if $image == true {
 
-    $os_info = parse_host_kernel($kernel)
+    $os_info = parse_entry_kernel($kernel)
     if !search_netboot_images($kernel) {
 
       pxe::image::install { '$kernel':
@@ -32,6 +32,6 @@ define pxe::menu::host (
   concat::fragment { "menu_item_${label}":
     target         => "$::pxe::tftp_root/pxelinux.cfg/default",
     order          => $order,
-    content        => template("pxe/pxe_menu_host.erb"),
+    content        => template("pxe/pxe_menu_entry.erb"),
   }
 }

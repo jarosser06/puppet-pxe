@@ -13,7 +13,7 @@ Usage
 
 ### Include PXE
 
-include pxe
+    include pxe
 
     include pxe { 'install_server':
       tftp_root     => '/srv/tftp',
@@ -29,19 +29,19 @@ include pxe
       menu_timeout  =>  500,
     } 
 
-    pxe::menu::host { 'webserver1':
+    pxe::menu::entry { 'webserver1':
       label         => 'webserver1',
       kernel        => 'ubuntu-installer-12.04/amd64/linux',
       append        => 'initrd=ubuntu-installer-12.04/amd64/initrd.gz'
     }
 
-    pxe::menu::host { 'testServer1':
+    pxe::menu::entry { 'testServer1':
       label         => 'testServer1',
       kernel        => 'ubuntu_precise_amd64',
       image         => true,
     }
 
-    pxe::menu::host { 'webserver2':
+    pxe::menu::entry { 'webserver2':
       kernel        => 'ubuntu-installer-12.04/amd64/linux',
       append        => 'initrd=ubuntu-installer-12.04/amd64/initrd.gz'
     }
