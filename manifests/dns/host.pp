@@ -1,6 +1,6 @@
 define pxe::dns::host (
   $mac_address,
-  $host_name,
+  $host_name = $title,
   $ip_address,
   $lease_time,
   $order = 10,  
