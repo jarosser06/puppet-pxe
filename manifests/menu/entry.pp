@@ -13,7 +13,7 @@ define pxe::menu::entry (
     $os_info = parse_entry_kernel($kernel)
     if !search_netboot_images($kernel) {
 
-      pxe::image::install { '$kernel':
+      pxe::image::install { $kernel:
         os_name    => $os_info[0],
         os_version => $os_info[1],
         os_arch    => $os_info[2],
