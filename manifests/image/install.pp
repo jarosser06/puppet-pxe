@@ -6,6 +6,13 @@ define pxe::image::install(
 
 ) {
 
+  file { "$::pxe::tftp_root/netboot" :
+    ensure  => directory,
+    mode    => 775,
+    user    => 'root',
+    group   => 'admin',
+  }
+
   case $operatingsystem {
     ubuntu: {
       if $operatingsystemrelease <= 10.04 {
